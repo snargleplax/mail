@@ -34,7 +34,7 @@
 // is the only external dependency. It's likely to be included in Go 1.5 in a new
 // mime/quotedprintable package (https://codereview.appspot.com/132680044).
 // 	go get godoc.org/gopkg.in/alexcesaro/quotedprintable.v1
-// 	go get github.com/mohamedattahri/mail
+// 	go get github.com/snargleplax/mail
 package mail
 
 import (
