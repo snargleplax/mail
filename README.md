@@ -1,6 +1,6 @@
 # Package mail
 
-[![Build Status](https://travis-ci.org/mohamedattahri/mail.svg?branch=master)](https://travis-ci.org/mohamedattahri/mail)  [![GoDoc](https://godoc.org/github.com/mohamedattahri/mail?status.svg)](https://godoc.org/github.com/mohamedattahri/mail)
+[![Build Status](https://travis-ci.org/snargleplax/mail.svg?branch=master)](https://travis-ci.org/snargleplax/mail)  [![GoDoc](https://godoc.org/github.com/snargleplax/mail?status.svg)](https://godoc.org/github.com/snargleplax/mail)
 
 Package mail implements composing and parsing of mail messages.
 
@@ -27,7 +27,7 @@ Feedback and contributions are more than welcome.
 Alex Cesaro's [quotedprintable package](https://godoc.org/gopkg.in/alexcesaro/quotedprintable.v1) is the only external dependency. It's likely to be included in Go 1.5 in a new [mime/quotedprintable](https://codereview.appspot.com/132680044) package.
 ```go
 go get godoc.org/gopkg.in/alexcesaro/quotedprintable.v1
-go get github.com/mohamedattahri/mail
+go get github.com/snargleplax/mail
 ```
 
 ## Examples
