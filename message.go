@@ -30,10 +30,6 @@
 //
 // Installation
 //
-// Alex Cesaro's quotedprintable package (https://godoc.org/gopkg.in/alexcesaro/quotedprintable.v1)
-// is the only external dependency. It's likely to be included in Go 1.5 in a new
-// mime/quotedprintable package (https://codereview.appspot.com/132680044).
-// 	go get godoc.org/gopkg.in/alexcesaro/quotedprintable.v1
 // 	go get github.com/snargleplax/mail
 package mail
 
@@ -50,14 +46,13 @@ import (
 	"math"
 	"mime"
 	"mime/multipart"
+	"mime/quotedprintable"
 	"net/textproto"
 	"path/filepath"
 	"strconv"
 	"strings"
 	"time"
 	"unicode"
-
-	qp "gopkg.in/alexcesaro/quotedprintable.v3"
 )
 
 var debug = debugT(false)
@@ -108,7 +103,7 @@ func (m *Message) GetHeader(header string) string {
 	if encoded == "" {
 		return ""
 	}
-	dec := new(qp.WordDecoder)
+	dec := new(mime.WordDecoder)
 	decoded, err := dec.DecodeHeader(encoded)
 	if err != nil {
 		return ""
@@ -270,7 +265,7 @@ func (m *Message) Bytes() []byte {
 	for key, items := range m.Header {
 		for _, item := range items {
 			if item != "" {
-				fmt.Fprintf(output, "%s: %s%s", key, qp.QEncoding.Encode("utf-8", item), crlf)
+				fmt.Fprintf(output, "%s: %s%s", key, mime.QEncoding.Encode("utf-8", item), crlf)
 			}
 		}
 	}
@@ -956,7 +951,7 @@ func (p *Multipart) AddText(mediaType string, r io.Reader) error {
 	}
 
 	reader := bufio.NewReader(r)
-	encoder := qp.NewWriter(w)
+	encoder := quotedprintable.NewWriter(w)
 	buffer := make([]byte, maxLineLen)
 	for {
 		read, err := reader.Read(buffer[:])
