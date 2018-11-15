@@ -286,7 +286,11 @@ func (m *Message) Bytes() []byte {
 	}
 	// Message-ID; randomly generated value if missing in the Header map.
 	if m.MessageID() == "" {
-		fmt.Fprintf(output, "Message-ID: <%s.%s>", randomString(messageIDLength), m.From().Address)
+		address := m.From()
+		if address == nil {
+			address = &Address{Name: "", Address: "unknown@unknown"}
+		}
+		fmt.Fprintf(output, "Message-ID: <%s.%s>", randomString(messageIDLength), address)
 		output.WriteString(crlf)
 	}
 	output.WriteString(crlf)
